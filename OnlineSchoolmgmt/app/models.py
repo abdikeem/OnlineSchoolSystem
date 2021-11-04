@@ -20,6 +20,7 @@ class Marks(models.Model):
     MathsMarks  = models.IntegerField(null=True)
     EnglishMarks  = models.IntegerField(null=True)
     ComputerMarks  = models.IntegerField(null=True)
+
  
     def __str__(self):
         return self.StudentName

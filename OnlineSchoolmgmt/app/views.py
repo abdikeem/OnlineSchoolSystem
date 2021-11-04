@@ -16,7 +16,7 @@ def home(request):
         'marks':marks,
     }
 
-    return render(request, 'app/home.html', context)
+    return render(request, 'home.html', context)
 
 def addAttendance(request):
     if request.user.is_authenticated:
