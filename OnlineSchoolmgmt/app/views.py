@@ -1,24 +1,21 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import login,logout,authenticate
+from django.shortcuts import redirect,render
+from django.contrib.auth import login as auth_login,logout,authenticate
 from django.http import HttpResponse
-from . forms import *
-
-# Create your views here.
-
+from .forms import *
+ 
 def home(request):
     notice = Notice.objects.all()
     attendance = Attendance.objects.all()
     marks = Marks.objects.all()
-
+ 
     context = {
         'notice':notice,
-        'attendance':attendance,
         'marks':marks,
+        'attendance':attendance,
     }
-
-    return render(request, 'home.html', context)
-
-def addAttendance(request):
+    return render(request,'app/home.html',context)
+ 
+def addAttendance(request):    
     if request.user.is_authenticated:
         form=addAttendanceform()
         if(request.method=='POST'):
@@ -72,7 +69,7 @@ def registerPage(request):
         }
         return render(request,'app/register.html',context)
  
-def loginPage(request):
+def login(request):
     if request.user.is_authenticated:
         return redirect('home')
     else:
@@ -86,6 +83,6 @@ def loginPage(request):
        context={}
        return render(request,'app/login.html',context)
  
-def logoutPage(request):
+def logout(request):
     logout(request)
     return redirect('/')
