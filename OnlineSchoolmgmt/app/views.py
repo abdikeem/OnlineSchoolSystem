@@ -1,8 +1,9 @@
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect,render
 from django.contrib.auth import login as auth_login,logout,authenticate
 from django.http import HttpResponse
 from .forms import *
- 
+
 def home(request):
     notice = Notice.objects.all()
     attendance = Attendance.objects.all()
